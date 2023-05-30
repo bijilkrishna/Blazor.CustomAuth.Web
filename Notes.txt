@@ -1,0 +1,35 @@
+Going to add a custom authentication logic 
+and make Role base authorisation  (Blazor server app)
+
+Step 1  :
+
+Add a Authentication folder , all the authentication related files are going to be in this folder .
+Create a class , CustomAuthenticationStateProvider and inherit it from AuthenticationStateProvider 
+Abstract class .
+
+What is AuthenticationSateProvider in Blazor ?
+
+Its a built in service in blazor server apps to
+get the authentiation data from the Asp.Net Core 's HttpContext.user 
+(Basically it provides the authentication state of the current user via GetAuthenticationStateAsync method in it .)
+
+Step 2 
+
+Implement GetAuthenticationStateAsync method (which is an abstract method from AuthenticationStateProvider class).
+
+Step 3
+
+set up ClaimsPriciple and ProtectedSessionStorage objects in CustomAuthenticationStateProvider class.
+And Add dependency injection for the protectedSessionStorage in program.cs file 
+
+Step 4 
+
+Set up GetAuthenticationStateAsync method . This is where we actually check if we have a valid user session available .If yes he will be assigned with the the corresponding 
+claims (Names and Roles ) , else the authentiation state will be set to annonymous .
+
+Step 5 
+
+Set up UpdateAuthenticationState method
+
+This will be called at the event of login and logout to set or delete the session variables .
+
